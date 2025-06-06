@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Intro Collector</title>
+  <script>
+    let intros = [];
+
+    function addIntro() {
+      const name = document.getElementById("name").value.trim();
+      const intro = document.getElementById("intro").value.trim();
+
+      if (name && intro) {
+        intros.push({ name, intro });
+        displayIntros();
+        document.getElementById("name").value = "";
+        document.getElementById("intro").value = "";
+      } else {
+        alert("Please fill out both fields.");
+      }
+    }
+
+    function displayIntros() {
+      const list = document.getElementById("introList");
+      list.innerHTML = ""; // clear
+
+      intros.forEach((entry, index) => {
+        const item = document.createElement("div");
+        item.innerHTML = `<strong>${entry.name}</strong>: ${entry.intro}`;
+        item.className = "bg-gray-100 p-2 m-2 rounded";
+        list.appendChild(item);
+      });
+    }
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3730a3;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌟 Introduce Yourself</h1>
+
+  <input type="text" id="name" placeholder="Your Name" />
+  <textarea id="intro" placeholder="Write your intro here..." rows="4"></textarea>
+  <button onclick="addIntro()">Submit</button>
+
+  <h2>👥 Collected Intros:</h2>
+  <div id="introList"></div>
+</body>
+</html>
